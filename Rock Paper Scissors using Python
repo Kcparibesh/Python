@@ -1,0 +1,34 @@
+import random
+
+myList = ['rock', 'paper', 'scissors']
+
+while True:
+    computer = random.choice(myList)
+
+    while True:
+        human = input("Enter rock, paper, or scissors: ").lower()
+        if human in myList:
+            break
+        else:
+            print("Invalid input! Please choose between rock, paper, or scissors.")
+
+    if (human == "rock" and computer == "scissors") or (human == "scissors" and computer == "paper") or (human == "paper" and computer == "rock"):
+        print("You:", human)
+        print("Computer:", computer)
+        print("Bingo, you won!")
+
+    elif (computer == "rock" and human == "scissors") or (computer == "scissors" and human == "paper") or (computer == "paper" and human == "rock"):
+        print("You:", human)
+        print("Computer:", computer)
+        print("Sad, you lost!")
+
+    elif computer == human:
+        print("You:", human)
+        print("Computer:", computer)
+        print("TIE!!!")
+
+    x = input("Wanna play again? (Y / N): ").lower()  # Add a newline character before the input prompt
+    if x == "n":
+        break
+
+print("Adios!!")
