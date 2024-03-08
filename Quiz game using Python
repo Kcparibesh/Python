@@ -1,1 +1,73 @@
+def new_game():
+    guesses = []  # Empty list to append with each choices user inputs
+    ques_num = 1  # Just to iterate over each keys in dictionary separately
+    points = 0  # The total number of correct answers made by user
 
+    for keys in questions:
+        print(keys)
+        for option in options[ques_num - 1]:
+            print(option)
+        guess = input("Enter (A, B, C or D) :\t").upper()
+        guesses.append(guess)
+
+        points += check_answer(questions.get(keys), guess)
+        ques_num += 1
+
+    display_score(points, guesses)
+    play_again()
+
+
+def check_answer(correct_ans, guess):
+    if correct_ans == guess:
+        print("Correct!")
+        print()
+        return 1
+    else:
+        print("Incorrect!")
+        print()
+        return 0
+
+
+def display_score(points, guesses):
+    print("----------------------------------------")
+    print(" RESULT ")
+    print("----------------------------------------")
+
+    print("Correct Answer: ", end='')
+    for i in questions:
+        print(questions.get(i), end="")
+    print()
+
+    print("Your Answer: ", end='')
+    for i in guesses:
+        print(i, end="")
+    print()
+
+    score = int((points / len(questions)) * 100)
+    print("Your score is " + str(score) + "%")
+
+
+def play_again():
+    x = input("wanna play again (yes/no)").lower()
+
+    if x == "yes":
+        new_game()
+    else:
+        print("Bye!!!")
+
+
+questions = {
+    "What is the largest mammal on Earth?": "A",
+    "Which country is known as the 'Land of the Rising Sun'?": "B",
+    "What is the only bird that can fly backward?": "C",
+    "What is the rarest blood type in humans?": "B",
+    "What is the only planet in our solar system that rotates clockwise?": "A"
+}
+
+options = [["A. Blue Whale", "B. Elephant", "C. Giraffe", "D. Hippopotamus"],
+           ["A. China", "B. Japan", "C. India", "D. Australia"],
+           ["A. Sparrow", "B. Owl", "C. Hummingbird", "D. Eagle"],
+           ["A. O negative", "B. AB negative", "C. B positive", "D. A positive"],
+           ["A. Venus", "B. Mars", "C. Uranus", "D. Neptune"]]
+
+new_game()  # GAME STARTS
